@@ -1,0 +1,18 @@
+# Python 暫存檔
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Jupyter Notebook 暫存
+.ipynb_checkpoints/
+
+# 執行環境與驅動
+chromedriver
+chromedriver.exe
+
+# 數據產出（避免上傳包含個資的分析報表）
+*.xlsx
+*.csv
+
+# 個人設定
+.env

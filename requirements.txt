@@ -1,0 +1,26 @@
+# ===============================================================
+# FB Contest Fairness Analyzer - Project Dependencies
+# 專案建置年份：2020
+# ===============================================================
+
+# --- 核心自動化與爬蟲工具 ---
+
+# Selenium: 用於模擬瀏覽器行為（登入、自動滾動、點擊展開隱藏留言）
+# 註：本專案建議使用 Selenium 3.141.0 以獲得最佳相容性
+selenium
+
+# BeautifulSoup4: 用於解析 HTML 結構，從 Selenium 抓取的頁面源碼中提取留言資訊
+beautifulsoup4
+
+# Requests: 用於處理基本的 HTTP 網路請求與資源獲取
+requests
+
+
+# --- 數據處理與分析工具 ---
+
+# Pandas: 專案核心分析工具。用於數據清洗、UID 去重（Distinct Count）、
+# 以及計算競爭者間的數據缺口（Gap Analysis），並產出 Excel 報表
+pandas
+
+# Openpyxl: Pandas 匯出 Excel (.xlsx) 格式時所需的引擎
+openpyxl

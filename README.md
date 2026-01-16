@@ -59,7 +59,6 @@ Facebook 預設會隱藏大量重複或長留言。本工具利用 **Selenium** 
 | Post URL | Total Comments | **Distinct Users (Real)** | Gap |
 | --- | --- | --- | --- |
 | Competitor_Post | 711 | **283** | - |
-| My_Post | 301 | **226** | -57 |
 
 ---
 

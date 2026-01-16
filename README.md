@@ -56,10 +56,9 @@ Facebook 預設會隱藏大量重複或長留言。本工具利用 **Selenium** 
 
 分析結果能清楚顯示：雖然某貼文有 700 多則留言，但去重後的「有效參與者」可能不到一半，藉此識別出灌水帳號。
 
-| Post URL | Total Comments | **Distinct Users (Real)** | Gap |
-| --- | --- | --- | --- |
-| Competitor_Post | 711 | **283** | - |
-| My_Post | 301 | **226** | -57 |
+| Post URL | Total Comments | **Distinct Users (Real)** |
+| --- | --- | --- |
+| Competitor_Post | 711 | **283** |
 
 ---
 

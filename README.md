@@ -67,8 +67,3 @@ Facebook 預設會隱藏大量重複或長留言。本工具利用 **Selenium** 
 **Eason**
 一位喜歡用自動化工具解決生活瑣事的資深工程師。
 
----
-
-## 📜 License
-
-[MIT](LICENSE)

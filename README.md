@@ -48,7 +48,7 @@ Facebook 預設會隱藏大量重複或長留言。本工具利用 **Selenium** 
 1. 安裝套件：`pip install pandas selenium beautifulsoup4`
 2. 準備與 Chrome 版本一致的 `chromedriver`。
 3. 於腳本中輸入 FB 帳密及目標貼文連結。
-4. 執行 `main2.ipynb` 即可產出分析報表。
+4. 執行 `fb_contest_analyzer.ipynb` 即可產出分析報表。
 
 ---
 

@@ -1,97 +1,69 @@
-# FB Contest Intelligence Analyzer & Competitor Insight
+# FB Contest Fairness Analyzer (Side Project)
 
-### Facebook 競賽自動化數據爬蟲與競爭者缺口分析工具
+### Facebook 競賽公平性分析與抗灌水抓取工具
 
-## 📖 專案背景
+## 💡 專案開發動機
 
-在進行 Facebook 社群行銷活動時，面對數百甚至數千則留言，手動統計不僅耗時且容易出錯。此外，Facebook 預設會隱藏大量留言與回覆，導致難以獲取完整的競爭對手數據。
+本專案源於一次參加 Facebook 社群抽獎競賽的個人經歷。在觀察競賽過程中，發現部分競爭者疑似使用「留言灌水」手段（即極少數帳號短時間內大量重複留言），試圖透過洗版來誤導活動數據，導致競賽失去公平性。
 
-本專案開發了一套自動化流程，透過 **Selenium** 模擬真實用戶行為，深度抓取動態載入的留言，並利用 **Pandas** 進行數據清洗與「競爭者缺口分析 (Gap Analysis)」，協助決策者快速掌握活動成效與市場競爭現況。
-
----
-
-## 🚀 核心技術功能
-
-### 1. 深度動態爬蟲 (Deep Web Scraping)
-
-* **自動化模擬登入**：處理 FB 登入驗證流程。
-* **遞迴展開機制**：自動偵測並點擊「查看更多留言」、「查看回覆」，確保獲取 100% 的原始留言數據，不受 FB 動態加載限制。
-* **非同步等待策略**：優化 `Implicitly Wait` 與 `Sleep` 邏輯，平衡爬取效率與規避平台偵測。
-
-### 2. 數據清洗與反作弊分析 (Data Cleaning & Anti-Cheating)
-
-* **有效參與者過濾**：透過 `Distinct Count` (UID/姓名去重)，過濾重複洗版、惡意灌水的留言，計算「真實有效參與人數」。
-* **關鍵字精準對齊**：支援特定 Hashtag 或活動關鍵字偵測（如：`#雨潔我要抽`）。
-
-### 3. 競爭者缺口分析 (Competitor Gap Analysis)
-
-* **Gap 計算**：自動對比自身與多個競爭對手間的留言數差異。
-* **實時排名**：將多篇貼文數據進行結構化整合，產出對比報表，直觀顯示數據領先/落後幅度。
+為了驗證這項觀察，我開發了這套 Side Project。透過自動化抓取完整的留言數據，分析「帳號去重後的真實參與人數」，以此識破灌水行為，並量化自己與對手之間的真實數據缺口 (Gap)。
 
 ---
 
-## 🛠 技術棧 (Tech Stack)
+## 🛠 我解決了哪些問題？
+
+### 1. 破解 FB 的「留言隱藏機制」
+
+Facebook 預設會隱藏大量重複或長留言。本工具利用 **Selenium** 模擬人工點擊，遞迴式地展開所有「查看更多留言」與「回覆」，確保獲取 100% 的原始樣本。
+
+### 2. 識別「虛假繁榮」 (Anti-Cheating)
+
+* **不重複者分析 (Distinct Count)**：透過 UID 統計，一眼看出哪些貼文是靠少數人「洗出來」的數字。
+* **數據透明化**：將原本模糊的社群數據轉化為結構化的 Pandas DataFrame，並計算出真正具有代表性的活動數據。
+
+### 3. 自動化數據對比
+
+* 自動匯出 Excel 報表，直接對比多個目標網址。
+* 計算 **Gap** (數據缺口)，輔助評估當時競賽的真實領先/落後幅度。
+
+---
+
+## ⚠️ 專案狀態說明 (Maintenance Note)
+
+> **本專案建置於 2020 年，主要用於個人技術思路與邏輯架構之展示。**
+> 由於 Facebook 網頁結構時常更新，本代碼之元素定位 (XPath/CSS Selector) 僅供參考，若需在現行環境執行，可能需針對當前 DOM 結構進行調整。
+
+---
+
+## 🚀 技術棧 (Tech Stack)
 
 * **語言**: Python 3.x
-* **自動化框架**: Selenium WebDriver (Chrome)
-* **網頁解析**: BeautifulSoup4, Regex
-* **數據處理**: Pandas, NumPy
-* **開發工具**: Jupyter Notebook (可擴充為 .py 腳本)
+* **核心工具**: Selenium WebDriver, BeautifulSoup4
+* **數據分析**: Pandas
 
 ---
 
-## ⚠️ 注意事項 (Maintenance Note)
+## ⚙️ 快速測試方式
 
-> **本專案建置於 2020 年，主要用於技術思路與邏輯架構之展示。**
-> 由於 Facebook 網頁前端結構與 API 政策隨時間頻繁更迭，部分元素定位 (CSS Selector/XPath) 或爬取邏輯在現行環境下可能需要配合最新版本進行調整。
-
----
-
-## ⚙️ 快速開始 (Quick Start)
-
-### 1. 環境需求
-
-* 安裝 Google Chrome 瀏覽器。
-* 下載與 Chrome 版本相符的 [ChromeDriver](https://chromedriver.chromium.org/downloads)。
-
-### 2. 安裝套件
-
-```bash
-pip install pandas selenium beautifulsoup4
-
-```
-
-### 3. 執行參數設定
-
-於 `FB_Crawler_Analysis.ipynb` 中修改以下變數：
-
-```python
-login_id = 'your_fb_account'
-login_pw = 'your_password'
-search_key = '#活動關鍵字'
-
-```
+1. 安裝套件：`pip install pandas selenium beautifulsoup4`
+2. 準備與 Chrome 版本一致的 `chromedriver`。
+3. 於腳本中輸入 FB 帳密及目標貼文連結。
+4. 執行 `main2.ipynb` 即可產出分析報表。
 
 ---
 
-## 📊 數據產出示例
+## 📊 數據分析範例 (Example)
 
-分析完成後，程式將自動匯出 Excel 報表，包含以下欄位：
+分析結果能清楚顯示：雖然某貼文有 700 多則留言，但去重後的「有效參與者」可能不到一半，藉此識別出灌水帳號。
 
-* **CommentCnt**: 原始留言總數
-* **Distinct_CommentCnt**: 去重後的有效參與人數
-* **Gap**: 與標竿貼文的數據差距
-
----
-
-## 🛡 免責聲明
-
-本專案僅供技術研究與學術學習使用。請使用者遵循 Facebook 的《服務條款》及相關爬蟲規範（robots.txt），切勿用於商業惡意用途或違反隱私權之行為。
+| Post URL | Total Comments | **Distinct Users (Real)** | Gap |
+| --- | --- | --- | --- |
+| Competitor_Post | 711 | **283** | - |
+| My_Post | 301 | **226** | -57 |
 
 ---
 
 ### 👨‍💻 作者
 
-**Eason** 資深工程師 | 專注於自動化工具開發、AI 數據整合及系統優化。
-
-
+**Eason**
+一位喜歡用自動化工具解決生活瑣事的資深工程師。
